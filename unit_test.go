@@ -20,3 +20,12 @@ func TestGetFileNameWithoutExt(t *testing.T) {
 	f := GetFileNameWithoutExt(p)
 	logger.Printf(" = %s\n", f)
 }
+
+func TestPathFileExist(t *testing.T) {
+	arr := []string{"/usr/", "~/go", "./", "~/xxx"}
+
+	for _, v := range arr {
+		b := PathFileExist(v)
+		logger.Printf("PathFileExist(%v) = %v", v, b)
+	}
+}

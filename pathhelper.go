@@ -36,6 +36,16 @@ func GetFileNameWithoutExt(filePath string) (fileNameWithoutExt string) {
 	return base[0 : len(base)-len(ext)]
 }
 
+// Check if a file or dir exists.
+func PathFileExist(path string) bool {
+	if _, err := os.Stat(path); err != nil {
+		if os.IsNotExist(err) {
+			return false
+		}
+	}
+	return true
+}
+
 func init() {
 	// init funlog's logger
 	logger = fnlog.New("")
