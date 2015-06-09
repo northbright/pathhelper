@@ -48,5 +48,5 @@ func PathFileExist(path string) bool {
 
 func init() {
 	// init funlog's logger
-	logger = fnlog.New("")
+	logger = fnlog.New("", true, false, false)
 }
