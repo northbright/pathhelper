@@ -1,8 +1,7 @@
 package pathhelper
 
 import (
-	"github.com/northbright/fnlog"
-	"log"
+	"fmt"
 	"os"
 	"os/exec"
 	"path"
@@ -10,19 +9,23 @@ import (
 )
 
 var (
-	logger *log.Logger
+	DEBUG bool = false // Set this flag to true to output debug messages from this package.
 )
 
 func GetCurrentExecDir() (dir string, err error) {
 	p, err := exec.LookPath(os.Args[0])
 	if err != nil {
-		logger.Printf("exec.LookPath(%s), err: %s\n", os.Args[0], err)
+		if DEBUG {
+			fmt.Printf("exec.LookPath(%s), err: %s\n", os.Args[0], err)
+		}
 		return "", err
 	}
 
 	absPath, err := filepath.Abs(p)
 	if err != nil {
-		logger.Printf("filepath.Abs(%s), err: %s\n", p, err)
+		if DEBUG {
+			fmt.Printf("filepath.Abs(%s), err: %s\n", p, err)
+		}
 		return "", err
 	}
 
@@ -44,9 +47,4 @@ func PathFileExist(path string) bool {
 		}
 	}
 	return true
-}
-
-func init() {
-	// init funlog's logger
-	logger = fnlog.New("", true, false, false)
 }

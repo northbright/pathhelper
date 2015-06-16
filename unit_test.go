@@ -1,31 +1,42 @@
-package pathhelper
+package pathhelper_test
 
 import (
-	"testing"
+	"fmt"
+	"github.com/northbright/pathhelper"
+	"os"
 )
 
-func TestGetCurrentExecDir(t *testing.T) {
-	logger.Printf("Testing GetCurrentExecDir()...\n")
-	dir, err := GetCurrentExecDir()
+func ExampleGetCurrentExecDir() {
+	dir, err := pathhelper.GetCurrentExecDir()
 	if err != nil {
-		t.Errorf("GetCurrentExecDir() err: %s\n", err)
 		return
 	}
-	logger.Printf("dir = %s\n", dir)
+
+	// temp test folder will be changed each time, output to os.Stderr.
+	// Ex: /tmp/go-build662839082/github.com/northbright/pathhelper/_test
+	fmt.Fprintf(os.Stderr, "current dir: %v\n", dir)
+	// Output:
 }
 
-func TestGetFileNameWithoutExt(t *testing.T) {
+func ExampleGetFileNameWithoutExt() {
 	p := "/a/b/c.apk"
-	logger.Printf("Testing GetFileNameWithoutExt(%s)...\n", p)
-	f := GetFileNameWithoutExt(p)
-	logger.Printf(" = %s\n", f)
+	f := pathhelper.GetFileNameWithoutExt(p)
+	fmt.Println(f)
+	// Output:
+	// c
 }
 
-func TestPathFileExist(t *testing.T) {
+func ExamplePathFileExist() {
 	arr := []string{"/usr/", "~/go", "./", "~/xxx"}
 
 	for _, v := range arr {
-		b := PathFileExist(v)
-		logger.Printf("PathFileExist(%v) = %v", v, b)
+		b := pathhelper.PathFileExist(v)
+		fmt.Printf("%v: %v\n", v, b)
 	}
+
+	// Output:
+	// /usr/: true
+	// ~/go: false
+	// ./: true
+	// ~/xxx: false
 }
