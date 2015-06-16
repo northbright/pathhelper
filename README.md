@@ -1,17 +1,9 @@
 # pathhelper
 
-`pathhelp` is a helper for golang `path` package
+Package pathhelper provides path related helper functions.
 
-#### Features:
-
-* Get current path of executable is running
-
-        dir, err := pathhelper.GetCurrentExecDir()
-
-* Get file name without extend name
-
-        f := pathhelper.GetFileNameWithoutExt(p)
+#### Documentation
+* [API Reference](http://godoc.org/github.com/northbright/pathhelper)
 
 #### License
-
-MIT License
+* [MIT License](./LICENSE)

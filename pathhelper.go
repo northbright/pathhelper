@@ -1,3 +1,4 @@
+// Package pathhelper provides path related helper functions.
 package pathhelper
 
 import (
@@ -12,6 +13,7 @@ var (
 	DEBUG bool = false // Set this flag to true to output debug messages from this package.
 )
 
+// GetCurrentExecDir() gets the current executable path.
 func GetCurrentExecDir() (dir string, err error) {
 	p, err := exec.LookPath(os.Args[0])
 	if err != nil {
@@ -33,13 +35,14 @@ func GetCurrentExecDir() (dir string, err error) {
 	return dir, nil
 }
 
+// GetFileNameWithoutExt() gets the file name without extended name of given file path.
 func GetFileNameWithoutExt(filePath string) (fileNameWithoutExt string) {
 	base := path.Base(filePath)
 	ext := path.Ext(base)
 	return base[0 : len(base)-len(ext)]
 }
 
-// Check if a file or dir exists.
+// PathFileExist checks if a file or dir exists.
 func PathFileExist(path string) bool {
 	if _, err := os.Stat(path); err != nil {
 		if os.IsNotExist(err) {
