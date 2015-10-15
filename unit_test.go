@@ -18,6 +18,21 @@ func ExampleGetCurrentExecDir() {
 	// Output:
 }
 
+func ExampleGetAbsPath() {
+	// Relative path will be joined to a absolute path with current test executable in under /tmp.
+	// Ex: /tmp/go-build662839082/github.com/northbright/pathhelper/_test/config.json
+	pathArr := []string{"/", "/var/log/boot.log", "config.json", "./example/test.go"}
+
+	for _, v := range pathArr {
+		if p, err := pathhelper.GetAbsPath(v); err != nil {
+			fmt.Fprintf(os.Stderr, "GetAbsPath(%v) error: %v\n", v, err)
+		} else {
+			fmt.Fprintf(os.Stderr, "%v\n", p)
+		}
+	}
+	// Output:
+}
+
 func ExampleGetFileNameWithoutExt() {
 	p := "/a/b/c.apk"
 	f := pathhelper.GetFileNameWithoutExt(p)

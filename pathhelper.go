@@ -35,6 +35,20 @@ func GetCurrentExecDir() (dir string, err error) {
 	return dir, nil
 }
 
+// GetAbsPath() returns absolute path of input path. It'll join the directory of current executable and input path if it's relative.
+func GetAbsPath(p string) (absPath string, err error) {
+	if filepath.IsAbs(p) {
+		return p, nil
+	}
+
+	dir := ""
+	if dir, err = GetCurrentExecDir(); err != nil {
+		return "", err
+	}
+
+	return path.Join(dir, p), nil
+}
+
 // GetFileNameWithoutExt() gets the file name without extended name of given file path.
 func GetFileNameWithoutExt(filePath string) (fileNameWithoutExt string) {
 	base := path.Base(filePath)
