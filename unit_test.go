@@ -33,6 +33,25 @@ func ExampleGetAbsPath() {
 	// Output:
 }
 
+func ExampleInitPathMap() {
+	// Init relative path map:
+	// Join all relative paths with current executable dir.
+	m := map[string]string{
+		"uploadDir": "./uploads",
+		"photoDir":  "./photos",
+	}
+
+	if err := pathhelper.InitPathMap(m); err != nil {
+		fmt.Fprintf(os.Stderr, "InitPathMap() error: %v\n", err)
+	}
+
+	fmt.Fprintf(os.Stderr, "InitPathMap():\n")
+	for k, v := range m {
+		fmt.Fprintf(os.Stderr, "k: %v, v: %v\n", k, v)
+	}
+	// Output:
+}
+
 func ExampleGetFileNameWithoutExt() {
 	p := "/a/b/c.apk"
 	f := pathhelper.GetFileNameWithoutExt(p)
