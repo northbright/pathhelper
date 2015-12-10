@@ -50,12 +50,12 @@ func GetAbsPath(p string) (absPath string, err error) {
 	return path.Join(dir, p), nil
 }
 
-// InitPathMap() joins all relative paths with current executable path.
+// RelativePathsToAbsPaths() joins all relative paths with current executable path.
 //
 //   Params:
 //     relativePathMap: key: path name, value: relative path.
 //       Ex: m := map[string]string{"uploadDir": "./uploads", "photoDir": "./photos",}
-func InitPathMap(relativePathMap map[string]string) (err error) {
+func RelativePathsToAbsPaths(relativePathMap map[string]string) (err error) {
 	dir := ""
 	if dir, err = GetCurrentExecDir(); err != nil {
 		return err
