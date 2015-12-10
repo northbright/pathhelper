@@ -52,6 +52,27 @@ func ExampleRelativePathsToAbsPaths() {
 	// Output:
 }
 
+func ExampleCreateDirs() {
+	m := map[string]string{
+		"uploadDir": "./uploads",
+		"photoDir":  "./photos",
+	}
+
+	// Convert relative paths to abs paths.
+	pathhelper.RelativePathsToAbsPaths(m)
+
+	// Create absolute dirs with 0755 permission bits.
+	if err := pathhelper.CreateDirs(m, 0755); err != nil {
+		fmt.Fprintf(os.Stderr, "CreateDirs() error: %v\n", err)
+	}
+
+	fmt.Fprintf(os.Stderr, "CreateDirs() successfully.\n")
+	for k, v := range m {
+		fmt.Fprintf(os.Stderr, "k: %v, v: %v\n", k, v)
+	}
+	// Output:
+}
+
 func ExampleGetFileNameWithoutExt() {
 	p := "/a/b/c.apk"
 	f := pathhelper.GetFileNameWithoutExt(p)

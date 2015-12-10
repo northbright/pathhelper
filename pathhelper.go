@@ -71,6 +71,21 @@ func RelativePathsToAbsPaths(relativePathMap map[string]string) (err error) {
 	return nil
 }
 
+// CreateDirs creates directories with given paths and permission.
+//
+//   Params:
+//     absDirMap: key: dir name, value: absolute dir path.
+//       Ex: m := map[string]string{"uploadDir": "/my/uploads", "photoDir": "/my/photos",}
+//     perm: permission bits.
+func CreateDirs(absDirMap map[string]string, perm os.FileMode) (err error) {
+	for _, dir := range absDirMap {
+		if err = os.MkdirAll(dir, perm); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 // GetFileNameWithoutExt() gets the file name without extended name of given file path.
 func GetFileNameWithoutExt(filePath string) (fileNameWithoutExt string) {
 	base := path.Base(filePath)
