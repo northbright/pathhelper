@@ -74,12 +74,18 @@ func RelativePathsToAbsPaths(relativePathMap map[string]string) (err error) {
 // CreateDirs creates directories with given paths and permission.
 //
 //   Params:
-//     absDirMap: key: dir name, value: absolute dir path.
-//       Ex: m := map[string]string{"uploadDir": "/my/uploads", "photoDir": "/my/photos",}
+//     dirMap: key: dir name, value: dir path.
+//       It'll join the directory of current executable and input path if it's relative.
+//       Ex: m := map[string]string{"uploadDir": "./uploads", "photoDir": "/tmp/photos",}
 //     perm: permission bits.
-func CreateDirs(absDirMap map[string]string, perm os.FileMode) (err error) {
-	for _, dir := range absDirMap {
-		if err = os.MkdirAll(dir, perm); err != nil {
+func CreateDirs(dirMap map[string]string, perm os.FileMode) (err error) {
+	for _, dir := range dirMap {
+		absDir := ""
+		if absDir, err = GetAbsPath(dir); err != nil {
+			return err
+		}
+
+		if err = os.MkdirAll(absDir, perm); err != nil {
 			return err
 		}
 	}

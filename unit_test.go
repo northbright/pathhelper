@@ -52,14 +52,12 @@ func ExampleRelativePathsToAbsPaths() {
 	// Output:
 }
 
+// Use "go test -c && ./pathhelper.test" to test.
 func ExampleCreateDirs() {
 	m := map[string]string{
 		"uploadDir": "./uploads",
-		"photoDir":  "./photos",
+		"photoDir":  "/tmp/photos",
 	}
-
-	// Convert relative paths to abs paths.
-	pathhelper.RelativePathsToAbsPaths(m)
 
 	// Create absolute dirs with 0755 permission bits.
 	if err := pathhelper.CreateDirs(m, 0755); err != nil {
