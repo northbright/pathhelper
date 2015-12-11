@@ -2,7 +2,6 @@
 package pathhelper
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -50,25 +49,22 @@ func GetAbsPath(p string) (absPath string, err error) {
 	return path.Join(dir, p), nil
 }
 
-// RelativePathsToAbsPaths() joins all relative paths with current executable path.
+// GetAbsPaths() returns absolute paths of input paths.
 //
 //   Params:
-//     relativePathMap: key: path name, value: relative path.
+//     pathMap: key: path name, value: path.
+//       It'll join the directory of current executable and input path if it's relative.
 //       Ex: m := map[string]string{"uploadDir": "./uploads", "photoDir": "./photos",}
-func RelativePathsToAbsPaths(relativePathMap map[string]string) (err error) {
-	dir := ""
-	if dir, err = GetCurrentExecDir(); err != nil {
-		return err
-	}
-
-	for k, v := range relativePathMap {
-		if filepath.IsAbs(v) {
-			return errors.New("Path is absolute but not relative.")
+//   Return:
+//     absPathMap: key: path name, value: absolute path.
+func GetAbsPaths(pathMap map[string]string) (absPathMap map[string]string, err error) {
+	absPathMap = map[string]string{}
+	for k, v := range pathMap {
+		if absPathMap[k], err = GetAbsPath(v); err != nil {
+			return absPathMap, err
 		}
-
-		relativePathMap[k] = path.Join(dir, v)
 	}
-	return nil
+	return absPathMap, nil
 }
 
 // CreateDirs creates directories with given paths and permission.

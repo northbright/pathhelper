@@ -33,20 +33,23 @@ func ExampleGetAbsPath() {
 	// Output:
 }
 
-func ExampleRelativePathsToAbsPaths() {
+func ExampleGetAbsPaths() {
+	var err error
 	// Init absolute path map:
 	// Join all relative paths with current executable dir.
-	m := map[string]string{
+	dirMap := map[string]string{
 		"uploadDir": "./uploads",
-		"photoDir":  "./photos",
+		"photoDir":  "/tmp/photos",
 	}
 
-	if err := pathhelper.RelativePathsToAbsPaths(m); err != nil {
-		fmt.Fprintf(os.Stderr, "RelativePathsToAbsPaths() error: %v\n", err)
+	absDirMap := map[string]string{}
+
+	if absDirMap, err = pathhelper.GetAbsPaths(dirMap); err != nil {
+		fmt.Fprintf(os.Stderr, "GetAbsPaths() error: %v\n", err)
 	}
 
-	fmt.Fprintf(os.Stderr, "RelativePathsToAbsPaths():\n")
-	for k, v := range m {
+	fmt.Fprintf(os.Stderr, "GetAbsPaths():\n")
+	for k, v := range absDirMap {
 		fmt.Fprintf(os.Stderr, "k: %v, v: %v\n", k, v)
 	}
 	// Output:
