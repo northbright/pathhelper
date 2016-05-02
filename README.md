@@ -1,7 +1,6 @@
 # pathhelper
 
-Package pathhelper provides path related helper functions.
-
+pathhelper is a [Golang](http://golang.org) package which provides path related helper functions.
 
 #### Get absolute path of current executalbe directory.
 
