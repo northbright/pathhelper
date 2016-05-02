@@ -1,8 +1,8 @@
 # pathhelper
 
-pathhelper is a [Golang](http://golang.org) package which provides path related helper functions.
-
 [![Build Status](https://travis-ci.org/northbright/pathhelper.svg?branch=master)](https://travis-ci.org/northbright/pathhelper)
+
+pathhelper is a [Golang](http://golang.org) package which provides path related helper functions.
 
 #### Get absolute path of current executalbe directory.
 
