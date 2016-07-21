@@ -7,9 +7,8 @@ import (
 )
 
 // 1. Run "go test -c && ./pathhelper.test" to generate test binary under root of project dir and start test.
-// 2. Run "go test" will generate test binary under "/tmp".
-//    Temp test folder will be changed each time, output to os.Stderr.
-//    Ex: /tmp/go-build662839082/github.com/northbright/pathhelper/_test
+//
+// 2. Run "go test" will generate test binary under "/tmp" with a random test dir(Ex: /tmp/go-build662839082/github.com/northbright/pathhelper/_test).
 func ExampleGetCurrentExecDir() {
 	dir, err := pathhelper.GetCurrentExecDir()
 	if err != nil {
@@ -21,9 +20,8 @@ func ExampleGetCurrentExecDir() {
 }
 
 // 1. Run "go test -c && ./pathhelper.test" to generate test binary under root of project dir and start test.
-// 2. Run "go test" will generate test binary under "/tmp".
-//    Relative path will be joined to a absolute path with current test executable in under "/tmp".
-//    Ex: /tmp/go-build662839082/github.com/northbright/pathhelper/_test/config.json
+//
+// 2. Run "go test" will generate test binary under "/tmp" with a random test dir(Ex: /tmp/go-build662839082/github.com/northbright/pathhelper/_test).
 func ExampleGetAbsPath() {
 	pathArr := []string{"/", "/var/log/boot.log", "config.json", "./example/test.go"}
 
