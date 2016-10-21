@@ -1,6 +1,7 @@
 # pathhelper
 
 [![Build Status](https://travis-ci.org/northbright/pathhelper.svg?branch=master)](https://travis-ci.org/northbright/pathhelper)
+[![Go Report Card](https://goreportcard.com/badge/github.com/northbright/pathhelper)](https://goreportcard.com/report/github.com/northbright/pathhelper)
 
 pathhelper is a [Golang](http://golang.org) package which provides path related helper functions.
 
