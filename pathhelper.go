@@ -10,10 +10,12 @@ import (
 )
 
 var (
-	DEBUG bool = false // Set this flag to true to output debug messages from this package.
+	// DEBUG is debug mode.
+	// Set this flag to true to output debug messages from this package.
+	DEBUG bool = false
 )
 
-// GetCurrentExecDir() gets the current executable path.
+// GetCurrentExecDir gets the current executable path.
 func GetCurrentExecDir() (dir string, err error) {
 	p, err := exec.LookPath(os.Args[0])
 	if err != nil {
@@ -35,7 +37,7 @@ func GetCurrentExecDir() (dir string, err error) {
 	return dir, nil
 }
 
-// GetAbsPath() returns absolute path of input path. It'll join the directory of current executable and input path if it's relative.
+// GetAbsPath returns absolute path of input path. It'll join the directory of current executable and input path if it's relative.
 func GetAbsPath(p string) (absPath string, err error) {
 	if filepath.IsAbs(p) {
 		return p, nil
@@ -49,7 +51,7 @@ func GetAbsPath(p string) (absPath string, err error) {
 	return path.Join(dir, p), nil
 }
 
-// GetAbsPaths() returns absolute paths of input paths.
+// GetAbsPaths returns absolute paths of input paths.
 //
 //   Params:
 //     pathMap: key: path name, value: path.
@@ -88,7 +90,7 @@ func CreateDirs(dirMap map[string]string, perm os.FileMode) (err error) {
 	return nil
 }
 
-// GetFileNameWithoutExt() gets the file name without extended name of given file path.
+// GetFileNameWithoutExt gets the file name without extended name of given file path.
 func GetFileNameWithoutExt(filePath string) (fileNameWithoutExt string) {
 	base := path.Base(filePath)
 	ext := path.Ext(base)
