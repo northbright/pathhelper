@@ -12,7 +12,7 @@ import (
 var (
 	// DEBUG is debug mode.
 	// Set this flag to true to output debug messages from this package.
-	DEBUG bool = false
+	DEBUG = false
 )
 
 // GetCurrentExecDir gets the current executable path.
