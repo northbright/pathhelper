@@ -4,6 +4,8 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/northbright/pathhelper)](https://goreportcard.com/report/github.com/northbright/pathhelper)
 [![GoDoc](https://godoc.org/github.com/northbright/pathhelper?status.svg)](https://godoc.org/github.com/northbright/pathhelper)
 
+Update: this repo is no longer maintained. Use [pathelper](https://github.com/northbright/pathelper) instead.
+
 pathhelper is a [Golang](http://golang.org) package which provides path related helper functions.
 
 #### Get absolute path of current executalbe directory.
